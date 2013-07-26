@@ -1,10 +1,5 @@
 #!/usr/bin/perl -w
-#
-#
-# jogi
-# Author: Kamil Kuaga<teodozjan@interia.pl>
-# This software released under the terms of the Artistic License
-# <http://www.opensource.org/licenses/artistic-license.html>
+
 
 package Jogi::Regex;
 BEGIN {
