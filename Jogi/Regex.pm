@@ -1,13 +1,11 @@
 #!/usr/bin/perl -w
 
+use 5.014;
 
 package Jogi::Regex;
-BEGIN {
-    use Exporter;
-    @ISA = qw(Exporter);
-    @EXPORT = qw(&get_regex);
+use base 'Exporter';
+our @EXPORT = qw(get_regex);
 
-}
 
 sub get_regex{
     my $func = shift @_ || "syslog";

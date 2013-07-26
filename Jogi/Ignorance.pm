@@ -1,11 +1,10 @@
 #!/usr/bin/perl -w
 
+use 5.014;
+
 package Ignorance;
-BEGIN {
-    use Exporter;
-    @ISA = qw(Exporter);
-    @EXPORT = qw(filter);
-}
+use base 'Exporter';
+our @EXPORT = qw(filter);
 
 sub filter{
     shift;

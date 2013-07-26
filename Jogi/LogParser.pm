@@ -1,14 +1,10 @@
 #!/usr/bin/perl -w
 
-
+use 5.014;
 package Jogi::LogParser;
-BEGIN {
-    use Exporter;
-    @ISA = qw(Exporter);
-    @EXPORT = qw(parse_log);
-}
 
-
+use base 'Exporter';
+our @EXPORT = qw(parse_log);
 
 sub  parse_log{
 

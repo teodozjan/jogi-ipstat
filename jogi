@@ -12,8 +12,8 @@ use 5.014;
 
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
-use Jogi::LogParser;
-use Jogi::Regex;
+use Jogi::LogParser qw (parse_log);
+use Jogi::Regex qw(get_regex);
 
 my $service;
 my $silent;
@@ -30,7 +30,7 @@ my $path = shift || "-";
 say "Run with --help for help\nUsing $path" unless $silent;
 
 open(LOG, "<$path") or die "Could not open \"$path\" :$!\n";
-my $regex = &get_regex($service);
+my $regex = get_regex($service);
 
 while(<LOG>){
     chomp $_;
@@ -83,7 +83,6 @@ grep man! grep!
 
 sub help{
 print <<EOF
-$version
 
 You can mix some of these options if you want to
 Usage:
