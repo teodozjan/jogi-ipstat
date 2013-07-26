@@ -15,8 +15,6 @@ Getopt::Long::Configure('bundling');
 use Jogi::LogParser;
 use Jogi::Regex;
 
-
-my $version="development version";
 my $service;
 my $silent;
 my %results;
@@ -29,7 +27,7 @@ GetOptions(
 my $path = shift || "-";
 
 
-print $version,"Run with --help for help\nUsing $path\n" unless $silent;
+say "Run with --help for help\nUsing $path" unless $silent;
 
 open(LOG, "<$path") or die "Could not open \"$path\" :$!\n";
 my $regex = &get_regex($service);
@@ -99,7 +97,7 @@ exit();
 }
 #############ENGINE###############
 for (keys %results){
-    print $_, ":\n", "-" x 80, "\n";
+    say $_, ":\n", "-" x 80;
 
     parse_log(@{$results{$_}});
 

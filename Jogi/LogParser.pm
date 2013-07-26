@@ -32,13 +32,14 @@ for(@_){
 }
 my ($i, $i2);
 for $i (sort {$results{$b} <=> $results{$a}} keys %results){
-    print " " , $results{$i}," > ", $i, "\n";
+    say " " , $results{$i}," > ", $i;
     for $i2 (keys %{$count{$i}}){
-        print "\t", $count{$i}{$i2}, ">", $i2, "\n";
+        say "\t", $count{$i}{$i2}, ">", $i2;
     }
-    print "\n";
+    say;
+    
 }
-print "\n";
+say;
 }
 return 1;
 END{}
