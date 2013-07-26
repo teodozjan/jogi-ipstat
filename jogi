@@ -8,19 +8,18 @@
 
 =cut
 
-use lib "/home/cobweb/prog/perl/jogi-1.3.2/";
-use strict;
+use 5.014;
+
 use Getopt::Long;
 Getopt::Long::Configure('bundling');
 use Jogi::LogParser;
 use Jogi::Regex;
 
 
-my $version="Jogi-logfile v1.3.4(9.04.2005)
-Copyright (C) Kamil Ku³aga <teodozjan\@gmail.com>\n";
-
-
-my($service, $silent, %results);
+my $version="development version";
+my $service;
+my $silent;
+my %results;
 
 GetOptions(
 	   "s|silent" => \$silent,
