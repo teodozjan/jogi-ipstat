@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!perl6 -w
 
 
 
@@ -8,9 +8,9 @@
 
 =cut
 
-use 5.014;
+use v6;
 
-use Getopt::Long;
+#use Getopt::Long;
 Getopt::Long::Configure('bundling');
 use Jogi::LogParser qw (parse_log);
 use Jogi::Regex qw(get_regex);
@@ -19,11 +19,11 @@ my $service;
 my $silent;
 my %results;
 
-GetOptions(
-	   "s|silent" => \$silent,
-	   "h|help" => \&help,
-	   "t|type=s" => \$service,
-	   );
+#GetOptions(
+#	   "s|silent" => \$silent,
+#	   "h|help" => \&help,
+#	   "t|type=s" => \$service,
+#	   );
 my $path = shift || "-";
 
 

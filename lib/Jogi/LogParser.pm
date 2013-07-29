@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 
-use 5.014;
+use v6;
 package Jogi::LogParser;
 
 use base 'Exporter';
