@@ -2,12 +2,12 @@
 
 use v6;
 
-package Jogi::Regex;
-use base 'Exporter';
-our @EXPORT = qw(get_regex);
+module Jogi::Regex{
 
 
-sub get_regex{
+
+
+  sub get_regex is export(){
     my $func = shift @_ || "syslog";
     return('.{15} \w+ (\w+)') if $func eq "syslog";
     return('.+? (\S+): ') if $func eq "vsftp";
@@ -16,6 +16,6 @@ sub get_regex{
     return('(.+)') if $func eq "all";
 
 
+  }
 }
-return 1;
-END{}
+

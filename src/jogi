@@ -11,9 +11,9 @@
 use v6;
 
 #use Getopt::Long;
-Getopt::Long::Configure('bundling');
-use Jogi::LogParser qw (parse_log);
-use Jogi::Regex qw(get_regex);
+#Getopt::Long::Configure('bundling');
+use Jogi::LogParser;
+use Jogi::Regex;
 
 my $service;
 my $silent;
@@ -35,10 +35,10 @@ my $regex = get_regex($service);
 while(<LOG>){
     chomp $_;
 
-    next unless /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
-    next unless $_ =~ s/$regex//o;
+    next unless /(\d{1..3}\.\d{1..3}\.\d{1..3}\.\d{1..3})/;
+    next unless s/$regex//;
 
-    push(@{$results{$1}},$_);
+    push(@(%results{$1}),$_);
 }
 close(LOG);
 
