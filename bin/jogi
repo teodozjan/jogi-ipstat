@@ -7,17 +7,14 @@ use v6;
 use Jogi::Regex;
 
 #my $path = shift || "-";
-my $path = "./syslog";
-
-say "Run with --help for help\nUsing $path" ;
-
-my $log = open $path or die "Could not open \"$path\" :$!";
+#my $log = open $path or die "Could not open \"$path\" :$!";
 
 
-for $log.lines -> $line
-{
-    next unless $line ~~ Jogi::Regex.ip;
-    say $line;
-}
-$log.close;
+#for $log.lines -> $line
+#{
+#    next unless $line ~~ ip;
+#    say $line;
+#}
+Jogi::Ip.parsefile("syslog", :actions(Jogi::IpActions));
+#$log.close;
 
