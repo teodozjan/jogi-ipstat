@@ -19,11 +19,6 @@ my $service;
 my $silent;
 my %results;
 
-#GetOptions(
-#	   "s|silent" => \$silent,
-#	   "h|help" => \&help,
-#	   "t|type=s" => \$service,
-#	   );
 #my $path = shift || "-";
 my $path = "/var/log/syslog";
 
@@ -40,46 +35,6 @@ for $log.lines -> $line
     #push(@(%results{$1}),$_);
 }
 close(LOG);
-
-B<=begin pod>
-=head1 SYNOPSIS
-
-B<jogi> [B<-rnbg>] filename
-B<jogi> [B<long options>] filename
-
-=head1 DESCRIPTION
-
-Jogi logfile anaylyzer is perl program that searches given
-logfile(by filename or pipe) for B<IP adressess> and prints it to B<stdout>.
-There are some options available I<the long> ones and their I<short equivalents>.
-
-  
-=head1 OPTIONS
-
-=over 4
-
-=item B<-t>, B<--type>
-
-Changes regex. Available things are B<syslog>(default), B<vsftpd>, B<exim>, B<>
-
-=item B<-h>, B<--help>
-
-Simple but useless help message 
-
-=item B<-s>, B<--silent>
-
-Turns on B<silent mode>. You don't see boring info messages and warnings. Very useful.
-
-
-=back
-
-=head1 FILTERING
-
-grep man! grep!
-
-=cut
-B=<end pod>
-
 
 sub help{
 print <<EOF
