@@ -1,28 +1,15 @@
 #!perl6 -w
 
-
-
-=head1 NAME
-
-  jogi - an perl program exmaining syslog files and sorting it by ip
-
-=cut
-
 use v6;
 
-#use Getopt::Long;
-#Getopt::Long::Configure('bundling');
+
 
 use Jogi::Regex;
 
-my $service;
-my $silent;
-my %results;
-
 #my $path = shift || "-";
-my $path = "/var/log/syslog";
+my $path = "./syslog";
 
-say "Run with --help for help\nUsing $path" unless $silent;
+say "Run with --help for help\nUsing $path" ;
 
 my $log = open $path or die "Could not open \"$path\" :$!";
 
@@ -31,30 +18,6 @@ for $log.lines -> $line
 {
     next unless $line ~~ Jogi::Regex.ip;
     say $line;
-
-    #push(@(%results{$1}),$_);
 }
-close(LOG);
-
-sub help{
-print <<EOF
-
-You can mix some of these options if you want to
-Usage:
-$0 -s /logdir/logfile
-
-Try man $0 or perldoc $0 
-
-EOF
-;
-exit();
-}
-#############ENGINE###############
-for (keys %results){
-    say $_, ":\n", "-" x 80;
-
-    parse_log(@{$results{$_}});
-
-}
-
+$log.close;
 
