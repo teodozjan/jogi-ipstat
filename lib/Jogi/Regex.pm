@@ -11,7 +11,7 @@ grammar Jogi::Ip{
     token hostname{\w+}
     token service{\w+}
     token message{.+?\n}
-    token logrecord {<stamp>\s<hostname>\s+<service>':'\s <message>}
+    token logrecord {<stamp>\s+<hostname>\s+<service>':'\s+<message>}
 
 
 }
