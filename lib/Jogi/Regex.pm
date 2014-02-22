@@ -3,15 +3,15 @@
 use v6;
 
 grammar Jogi::Ip{
-    regex TOP{^<logrecord>+$}
+    token TOP{^<logrecord>+$}
 
-    #regex byte {(\d**1..3) <?{ $0 < 256 }>}
-    #regex ip {<byte> [\. <byte>] ** 3}
-    regex stamp{<alpha>**3 \s \d**2 \s \d**2 ':' \d**2 ':' \d**2 }
-    regex hostname{\w+}
-    regex service{\w+}
-    regex message{\w+}
-    regex logrecord {<stamp>\s<hostname>\s+<service>':'\s <message>}
+    #token byte {(\d**1..3) <?{ $0 < 256 }>}
+    #token ip {<byte> [\. <byte>] ** 3}
+    token stamp{<alpha>**3 \s \d**2 \s \d**2 ':' \d**2 ':' \d**2 }
+    token hostname{\w+}
+    token service{\w+}
+    token message{.+?\n}
+    token logrecord {<stamp>\s<hostname>\s+<service>':'\s <message>}
 
 
 }
