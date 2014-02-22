@@ -12,7 +12,7 @@ use v6;
 
 #use Getopt::Long;
 #Getopt::Long::Configure('bundling');
-use Jogi::LogParser;
+
 use Jogi::Regex;
 
 my $service;
@@ -24,24 +24,24 @@ my %results;
 #	   "h|help" => \&help,
 #	   "t|type=s" => \$service,
 #	   );
-my $path = shift || "-";
-
+#my $path = shift || "-";
+my $path = "/var/log/syslog";
 
 say "Run with --help for help\nUsing $path" unless $silent;
 
-open(LOG, "<$path") or die "Could not open \"$path\" :$!\n";
-my $regex = get_regex($service);
+my $log = open $path or die "Could not open \"$path\" :$!";
 
-while(<LOG>){
-    chomp $_;
 
-    next unless /(\d{1..3}\.\d{1..3}\.\d{1..3}\.\d{1..3})/;
-    next unless s/$regex//;
+for $log.lines -> $line
+{
+    next unless $line ~~ Jogi::Regex.ip;
+    say $line;
 
-    push(@(%results{$1}),$_);
+    #push(@(%results{$1}),$_);
 }
 close(LOG);
 
+B<=begin pod>
 =head1 SYNOPSIS
 
 B<jogi> [B<-rnbg>] filename
@@ -78,7 +78,7 @@ Turns on B<silent mode>. You don't see boring info messages and warnings. Very u
 grep man! grep!
 
 =cut
-
+B=<end pod>
 
 
 sub help{
