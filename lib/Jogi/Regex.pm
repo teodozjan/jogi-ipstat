@@ -9,7 +9,7 @@ grammar Jogi::Ip{
     token stamp{<alpha>**3 <space> <digit>**2 <space> <digit>**2 ':' <digit>**2 ':' <digit>**2 }
     token hostname{<-space>+}
     token service{<-space>+}
-    token message{.+?\n+}#<-space>+}
+    token message{.+?\n+}#should be <-space>+ but perl does not work
     token logrecord {<stamp><space><hostname><space><service>:<message>}
  
    
@@ -28,23 +28,23 @@ class Jogi::IpActions{
     }
 
     method logrecord($/){
-	say "logrecord $/ |";
+	print ".";
     }   
 
     method stamp($/){
-	say "stamp $/|";
+	#say "stamp $/|";
     } 
 
     method message($/){
-	say "message $/";
+	#say "message $/";
     }
 
     method hostname($/){
-	say "hostname $/";
+	#say "hostname $/";
     }
 
     method service($/){
-	say "service $/";
+	#say "service $/";
     }
 }
 
