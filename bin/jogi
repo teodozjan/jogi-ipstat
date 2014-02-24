@@ -9,12 +9,6 @@ use Jogi::Regex;
 #my $path = shift || "-";
 #my $log = open $path or die "Could not open \"$path\" :$!";
 
-
-#for $log.lines -> $line
-#{
-#    next unless $line ~~ ip;
-#    say $line;
-#}
 Jogi::Syslog.parsefile("syslog", :actions(Jogi::SyslogActions));
-#$log.close;
+
 
