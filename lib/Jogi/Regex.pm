@@ -9,8 +9,8 @@ grammar Jogi::Ip{
     regex stamp{<alpha>**3 <space> <digit>**2 <space> <digit>**2 ':' <digit>**2 ':' <digit>**2 }
     regex hostname{<-space>+}
     regex service{<-space>+ <?before ':'>}
-    regex message{.+?\n+}#should be <-space>+ but does not work
-    regex logrecord {<stamp> <space> <hostname> <space>	 <service> <message>}
+    regex message{\N+<?before \n>}
+    regex logrecord {<stamp> <space> <hostname> <space>	 <service> <message> <space>}
  
    
 }
