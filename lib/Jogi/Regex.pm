@@ -3,14 +3,14 @@
 use v6;
 
 grammar Jogi::Ip{
-    token TOP{^<logrecord>+$}
+    regex TOP{^<logrecord>+$}
     #rule byte {(<digit>**1..3) <?{ $0 < 256 }>}
     #rule ip {<byte> [\. <byte>] ** 3}
-    token stamp{<alpha>**3 <space> <digit>**2 <space> <digit>**2 ':' <digit>**2 ':' <digit>**2 }
-    token hostname{<-space>+}
-    token service{<-space>+}
-    token message{.+?\n+}#should be <-space>+ but perl does not work
-    token logrecord {<stamp><space><hostname><space><service>:<message>}
+    regex stamp{<alpha>**3 <space> <digit>**2 <space> <digit>**2 ':' <digit>**2 ':' <digit>**2 }
+    regex hostname{<-space>+}
+    regex service{<-space>+ <?before ':'>}
+    regex message{.+?\n+}#should be <-space>+ but perl does not work
+    regex logrecord {<stamp> <space> <hostname> <space>	 <service> <message>}
  
    
 }
@@ -32,19 +32,19 @@ class Jogi::IpActions{
     }   
 
     method stamp($/){
-	#say "stamp $/|";
+	say "stamp $/|";
     } 
 
     method message($/){
-	#say "message $/";
+	say "message $/";
     }
 
     method hostname($/){
-	#say "hostname $/";
+	say "hostname $/";
     }
 
     method service($/){
-	#say "service $/";
+	say "service $/";
     }
 }
 
