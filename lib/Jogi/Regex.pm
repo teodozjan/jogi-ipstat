@@ -1,8 +1,8 @@
-#!/usr/bin/perl -w
+#!perl6 
 
 use v6;
 
-grammar Jogi::Ip{
+grammar Jogi::Syslog{
     regex TOP{^<logrecord>+$}
     #rule byte {(<digit>**1..3) <?{ $0 < 256 }>}
     #rule ip {<byte> [\. <byte>] ** 3}
@@ -10,6 +10,11 @@ grammar Jogi::Ip{
     regex hostname{<-space>+}
     regex service{<-space>+ <?before ':'>}
     regex message{\N+<?before \n>}
+
+
+
+
+
     regex logrecord {<stamp> <space> <hostname> <space>	 <service> <message> <space>}
  
    
@@ -21,7 +26,7 @@ class Jogi::SysLogRecord{
     my $ip;
 }
 
-class Jogi::IpActions{
+class Jogi::SyslogActions{
     my $counter = 0;
     my Int constant $PACK_SIZE = 100;
 

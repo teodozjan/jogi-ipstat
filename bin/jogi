@@ -15,6 +15,6 @@ use Jogi::Regex;
 #    next unless $line ~~ ip;
 #    say $line;
 #}
-Jogi::Ip.parsefile("syslog", :actions(Jogi::IpActions));
+Jogi::Syslog.parsefile("syslog", :actions(Jogi::SyslogActions));
 #$log.close;
 
