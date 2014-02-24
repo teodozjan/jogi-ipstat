@@ -19,32 +19,37 @@ class Jogi::SysLogRecord{
     my $stamp;
     my $service;
     my $ip;
-
 }
 
 class Jogi::IpActions{
+    my $counter = 0;
+
     method TOP($/){
-	say "Parsing end";
+	say "\nParsing end";
     }
 
     method logrecord($/){
-	print ".";
+	if ++$counter % 100 == 0
+	{
+	    $counter = 0;
+	    print ".";
+	}
     }   
 
     method stamp($/){
-	say "stamp $/|";
+	# say "stamp $/|"; stamp seems to always hit ok
     } 
 
     method message($/){
-	say "message $/";
+	#say "message $/";
     }
 
     method hostname($/){
-	say "hostname $/";
+	#say "hostname $/";
     }
 
     method service($/){
-	say "service $/";
+	#say "service $/";
     }
 }
 
