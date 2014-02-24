@@ -23,13 +23,14 @@ class Jogi::SysLogRecord{
 
 class Jogi::IpActions{
     my $counter = 0;
+    my Int constant $PACK_SIZE = 100;
 
     method TOP($/){
 	say "\nParsing end";
     }
 
     method logrecord($/){
-	if ++$counter % 100 == 0
+	if ++$counter % $PACK_SIZE == 0
 	{
 	    $counter = 0;
 	    print ".";
