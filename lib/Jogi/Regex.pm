@@ -3,17 +3,16 @@
 use v6;
 
 grammar Jogi::Ip{
-    token TOP{^<logrecord>+?$}
-
-    #token byte {(\d**1..3) <?{ $0 < 256 }>}
-    #token ip {<byte> [\. <byte>] ** 3}
-    token stamp{<alpha>**3 \s \d**2 \s \d**2 ':' \d**2 ':' \d**2 }
-    token hostname{\w+}
-    token service{\N+?':'}
-    token message{.+?\n}
-    token logrecord {<stamp>\s+<hostname>\s+<service>\s+<message>}
-
-
+    token TOP{<logrecord>+}
+    #rule byte {(<digit>**1..3) <?{ $0 < 256 }>}
+    #rule ip {<byte> [\. <byte>] ** 3}
+    token stamp{<alpha>**3 <space> <digit>**2 <space> <digit>**2 ':' <digit>**2 ':' <digit>**2 }
+    token hostname{<-space>+}
+    token service{<-space>+}
+    token message{.+?\n+}#<-space>+}
+    token logrecord {^^<stamp><space><hostname><space><service>:<message>}
+ 
+   
 }
 
 class Jogi::SysLogRecord{
@@ -25,15 +24,15 @@ class Jogi::SysLogRecord{
 
 class Jogi::IpActions{
     method TOP($/){
-	say "TOP $/";
+	say "PTOP $/";
     }
 
     method logrecord($/){
-	say "logrecord $/";
+	say "logrecord $/ |";
     }   
 
     method stamp($/){
-	say "stamp $/";
+	say "stamp $/|";
     } 
 
     method message($/){
